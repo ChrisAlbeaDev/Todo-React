@@ -38,8 +38,8 @@ function App() {
   };
 
   return (
-    <div>
-      <h1>To-Do List</h1>
+    <div className="bg-blue-500 text-white p-4">
+      <h1 className="p-4">To-Do List</h1>
       <AddTodo onAddTodo={handleAddTodo} />
       <TodoList todos={todos} onToggleComplete={handleToggleComplete} onDelete={handleDelete} />
     </div>
