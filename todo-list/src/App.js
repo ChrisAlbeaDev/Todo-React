@@ -8,8 +8,13 @@ function App() {
   );
 
   useEffect(() => {
-    localStorage.setItem('todos', JSON.stringify(todos));
-  }, [todos]);
+    try {
+      const parsedTodos = JSON.parse(localStorage.getItem('todos')) || [];
+      setTodos(parsedTodos);
+    } catch (error) {
+      console.error('Error parsing todos from localStorage:', error);
+    }
+  }, []);
 
   const handleAddTodo = (text) => {
     const newTodo = {
