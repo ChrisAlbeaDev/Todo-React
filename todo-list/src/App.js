@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TodoList from './Todo/TodoList';
 import AddTodo from './Todo/AddTodo';
 
+
 function App() {
   const [todos, setTodos] = useState(
     JSON.parse(localStorage.getItem('todos')) || []
@@ -38,8 +39,8 @@ function App() {
   };
 
   return (
-    <div className="bg-blue-500 text-white p-4">
-      <h1 className="p-4">To-Do List</h1>
+    <div className="container mx-auto max-w-md p-4">
+      <h1 className="text-3xl font-bold text-center mb-4">To-Do List</h1>
       <AddTodo onAddTodo={handleAddTodo} />
       <TodoList todos={todos} onToggleComplete={handleToggleComplete} onDelete={handleDelete} />
     </div>
