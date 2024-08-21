@@ -6,23 +6,27 @@ function TodoCheckbox({ checked, onChange }) {
   );
 }
 
-function TodoItem({ todo }) {
+function TodoItem({ todo, onToggleComplete, onDelete }) {
+  const handleToggle = () => onToggleComplete(todo.id);
 
   return (
     <li key={todo.id}>
-      <TodoCheckbox checked={todo.completed} />
+      <TodoCheckbox checked={todo.completed} onChange={handleToggle} />
       <span className={todo.completed ? 'completed' : ''}>{todo.text}</span>
+      <button onClick={() => onDelete(todo.id)}>Delete</button>
     </li>
   );
 }
 
-function TodoList({ todos}) {
+function TodoList({ todos, onToggleComplete, onDelete }) {
   return (
     <ul>
       {todos.map((todo) => (
         <TodoItem
           key={todo.id}
           todo={todo}
+          onToggleComplete={onToggleComplete}
+          onDelete={onDelete}
         />
       ))}
     </ul>
@@ -83,7 +87,7 @@ function App() {
     <div>
       <h1>To-Do List</h1>
       <AddTodo onAddTodo={handleAddTodo} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggleComplete={handleToggleComplete} onDelete={handleDelete} />
     </div>
   );
 }
