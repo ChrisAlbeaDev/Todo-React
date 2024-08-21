@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import validator from 'validator'
 
 function AddTodo({ onAddTodo }) {
     const [newTodoText, setNewTodoText] = useState('');
@@ -6,7 +7,7 @@ function AddTodo({ onAddTodo }) {
     const handleSubmit = (event) => {
       event.preventDefault();
       const trimmedText = newTodoText.trim();
-      if (trimmedText !== '') {
+      if (trimmedText !== '' && validator.escape(trimmedText)) { 
         onAddTodo(trimmedText);
         setNewTodoText('');
       }
